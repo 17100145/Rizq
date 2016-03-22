@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Action:</strong>
+  <%= @rizq.action %>
+</p>
+
+<p>
+  <strong>Food:</strong>
+  <%= @rizq.food %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @rizq.quantity %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @rizq.address %>
+</p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @rizq.area %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @rizq.date %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @rizq.time %>
+</p>
+
+<p>
+  <strong>Perishable:</strong>
+  <%= @rizq.perishable %>
+</p>
+
+<%= link_to 'Edit', edit_rizq_path(@rizq) %> |
+<%= link_to 'Back', rizqs_path %>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  action: MyString
+  food: MyText
+  quantity: MyString
+  address: MyText
+  area: MyString
+  date: 2016-03-08
+  time: 2016-03-08 11:38:06
+  perishable: false
+
+two:
+  action: MyString
+  food: MyText
+  quantity: MyString
+  address: MyText
+  area: MyString
+  date: 2016-03-08
+  time: 2016-03-08 11:38:06
+  perishable: false

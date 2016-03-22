@@ -1,0 +1,15 @@
+%h1= @user.username
+= @lol
+%br
+= link_to 'Logout', logout_path
+- if @user.designation == "manager"
+    = form_tag user_path(@user), :method => :get do
+        = label :manager, :post, 'Message'
+        = text_field :post, "status"
+        = submit_tag 'post'
+        
+    - 5.times do
+        %br
+    - @all_statuses.each do |status|
+        %br
+        = status.status
