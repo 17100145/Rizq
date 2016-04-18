@@ -5,13 +5,21 @@ Rails.application.routes.draw do
 
   resources :rizqs
   get 'signup'  => 'users#new'
+  post 'signup' => 'users#create'
   get 'login'   => 'sessions#new'
   post 'login'   => 'sessions#create'
   get 'logout'  => 'sessions#destroy'
+  get 'about'  => 'rizqs#about'
+  get 'ourteam'  => 'rizqs#ourteam'
+  get 'contactus'  => 'rizqs#contactus'
+  get 'faqs'  => 'rizqs#faqs'
+  
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
+  
+  get "users/:id/activate" => "users#activate", :as => "active_user"
+  get "users/:id/reject" => "users#reject", :as => "reject_user"
   # You can have the root of your site routed with "root"
   root 'rizqs#index'
 

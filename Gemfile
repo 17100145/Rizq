@@ -3,10 +3,40 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
-
+gem 'unicorn'
+gem 'thin'
+gem 'pg'
 gem 'rspec'
+
+group :test, :development do
+  gem 'sqlite3'
+  gem 'rspec-rails'
+  gem 'pry'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'awesome_print'
+  gem 'capybara'
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'guard-rspec'
+  gem 'spork'
+  gem 'guard-spork'
+  
+  ##### CUCUMBER #####
+  gem 'cucumber-rails', require: false
+  gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
+  ##### CUCUMBER #####
+  
+end
+
+# group :assets do
+#   gem 'sass-rails',   '~> 3.2.3'
+#   gem 'coffee-rails', '~> 3.2.1'
+#   gem 'uglifier', '>= 1.0.3'
+# end
+
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

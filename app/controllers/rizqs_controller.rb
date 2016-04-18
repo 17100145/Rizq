@@ -6,7 +6,25 @@ class RizqsController < ApplicationController
   def index
     @rizqs = Rizq.all
     
-    @managerposts = Post.where(:userid=>User.where(:designation=>"manager").uniq.pluck(:id))
+    @managerposts = Post.where(:user_id=>User.where(:designation=>"manager").uniq.pluck(:id))
+    # @statuses = Array.new
+    @names = Array.new
+    @managerposts.each do |poe|
+      # @statuses.push(poe)
+      @names.push(User.where(:id=>poe.user_id).pluck(:username))
+    end
+    # @statuses = @statuses.zip(@names)
+    # if logged_in?
+    #   @user = User.find(params[:id])
+    # end
+  end
+  def about
+  end
+  def faqs
+  end
+  def contactus
+  end
+  def ourteam
   end
 
   # GET /rizqs/1

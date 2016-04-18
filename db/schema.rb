@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310142709) do
+ActiveRecord::Schema.define(version: 20160418001436) do
 
   create_table "posts", force: :cascade do |t|
-    t.integer  "userid"
+    t.integer  "user_id"
     t.text     "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -44,9 +44,10 @@ ActiveRecord::Schema.define(version: 20160310142709) do
     t.string   "firstname"
     t.string   "lastname"
     t.string   "phone"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "password_digest"
+    t.boolean  "approval",        default: false
   end
 
 end

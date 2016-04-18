@@ -2,14 +2,43 @@
 = @lol
 %br
 = link_to 'Logout', logout_path
+= link_to 'Home Page', root_url
 - if @user.designation == "manager"
     = form_tag user_path(@user), :method => :get do
         = label :manager, :post, 'Message'
         = text_field :post, "status"
         = submit_tag 'post'
-        
+    = "Approve Volunteers"
+    - @all_pending_volunteers.each do |vol|
+        %br
+        = vol.username
+        = vol.email
+        = vol.cnic
+        = vol.age
+        = vol.address
+        = vol.organization
+        = vol.firstname
+        = vol.lastname
+        = vol.phone
+        = link_to 'approve', active_user_path(:volid=>vol.id)
+        = link_to 'reject', reject_user_path(:volid=>vol.id)
     - 5.times do
         %br
     - @all_statuses.each do |status|
         %br
+        = @user.username + ": "
         = status.status
+    - Rizq.all.each do |rizq|
+        = rizq.action
+        = rizq.food
+        = rizq.quantity
+        = rizq.address
+        = rizq.area
+        = rizq.date
+        = rizq.time
+        = rizq.perishable
+        
+- if @user.designation == "volunteer" && @user.approval == false
+    = "Aprroval Pending"
+- elsif @user.designation == "volunteer"
+    = "Assigned Jobs"

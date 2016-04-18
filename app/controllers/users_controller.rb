@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     if @user.designation == "manager"
       if params[:post] != nil 
         if params[:post][:status] != ""
-        @status = Post.new(:userid=>@user.id,:status=>params[:post][:status])
+        @status = Post.new(:user_id=>@user.id,:status=>params[:post][:status])
       if @status.save
         @lol = "Updated" 
       else
@@ -19,7 +19,8 @@ class UsersController < ApplicationController
       end
     end
     
-    @all_statuses = Post.where(:userid=>@user.id)
+    @all_statuses = Post.where(:user_id=>@user.id)
+    @all_pending_volunteers = User.where(:designation=>'volunteer', :approval=>false)
     
    end
 
@@ -37,7 +38,18 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-  
+  def activate
+    @voli = User.find(params[:volid])
+    @voli.update_attribute(:approval, true)
+    @user = User.find(session[:user_id]);
+    redirect_to user_path(@user)
+  end
+  def reject
+    @voli = User.find(params[:volid])
+    @voli.destroy
+    @user = User.find(session[:user_id]);
+    redirect_to user_path(@user)
+  end
   def user_params
       params.require(:user).permit(:username, :email, :password, :password_confirmation, :cnic, :age, :address, :organization, :designation, :firstname, :lastname, :phone)
   end

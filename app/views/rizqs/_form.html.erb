@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :action %><br>
-    <%= f.text_field :action %>
+    <%= f.select(:action, options_for_select([["Request", "Request"], ["Donate", "Donate"]])) %>
   </div>
   <div class="field">
     <%= f.label :food %><br>
