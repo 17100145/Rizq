@@ -10,7 +10,6 @@ gem 'rspec'
 
 group :test, :development do
   gem 'sqlite3'
-  gem 'rspec-rails'
   gem 'pry'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
