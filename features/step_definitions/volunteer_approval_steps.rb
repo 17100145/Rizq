@@ -21,7 +21,16 @@ Then (/^I should see volunteer details under "(.*?)"$/) do |in_field|
     page.should have_content(@user.email)
 end
 
-And (/^Then the volunteer should be approved$/) do
-    @user = User.find_by_username("somevol")
-    assert(@user.approval, true)
+Then (/^the volunteer should be approved$/) do
+    @user = User.find_by username: 'somevol'
+    if (@user.approval == false)
+        fail(ArgumentError.new('Assertion failed'))
+    end
+end
+
+Then (/^the volunteer account should be deleted$/) do
+    @user = User.find_by username: 'somevol'
+    if (@user != nil)
+        fail(ArgumentError.new('Assertion failed'))
+    end
 end

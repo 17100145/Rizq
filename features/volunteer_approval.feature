@@ -11,13 +11,13 @@ Feature: Volunteer Approval
   Scenario: Approve Volunteers
     Given there is a volunteer request
     And I'm logged in as a "manager"
-    And I click "approve"
+    And I follow "approve"
     When I am on my profile
     Then the volunteer should be approved
 
   Scenario: Reject Volunteers
     Given there is a volunteer request
     And I'm logged in as a "manager"
-    And I click "reject"
+    And I follow "reject"
     When I am on my profile
     Then the volunteer account should be deleted
