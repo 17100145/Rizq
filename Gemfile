@@ -12,7 +12,7 @@ group :test, :development do
   gem 'sqlite3'
   gem 'pry'
   gem 'factory_girl_rails'
-  gem 'database_cleaner'
+  # gem 'database_cleaner'
   gem 'awesome_print'
   gem 'capybara'
   gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
@@ -21,7 +21,7 @@ group :test, :development do
   gem 'guard-spork'
   
   ##### CUCUMBER #####
-  gem 'cucumber-rails', require: false
+  # gem 'cucumber-rails', require: false
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   ##### CUCUMBER #####
