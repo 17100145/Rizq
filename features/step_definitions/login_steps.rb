@@ -18,10 +18,18 @@ And (/^I click "(.*?)"$/) do |button|
   click_button(button)
 end
 
+And (/^I follow "(.*?)"$/) do |button|
+  click_link(button)
+end
+
 Then (/^I should see my username "(.*?)"$/) do |usernam|
   page.should have_content(usernam)
 end
 
 And (/^I should see a "(.*?)" button$/) do |thisb|
   page.should have_content(thisb)
+end
+
+And (/^I should not see a "(.*?)" button$/) do |thisb|
+  page.should have_no_content(thisb)
 end
