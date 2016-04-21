@@ -1,21 +1,46 @@
-%h1 Rizq
+%nav.navbar.navbar-default.navbar-fixed-bottom.bg-1
+    %div.container
+        %div.navbar-header
+        %button.navbar-toggle{'data-target' => '#myNavbar', 'data-toggle' => 'collapse', :type => 'button'}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+        %div.collapse.navbar-collapse#myNavbarbottom
+            %ul.nav.navbar-nav.navbar-right
+                %li
+                    = link_to 'About', about_path
+                %li
+                    = link_to 'Our Team', ourteam_path
+                %li
+                    = link_to 'FAQs', faqs_path
+                %li
+                    = link_to 'Contact us', contactus_path
+                
+%nav.navbar.navbar-default.navbar-fixed-top
+    %div.container
+        %div.navbar-header
+        %button.navbar-toggle{'data-target' => '#myNavbar', 'data-toggle' => 'collapse', :type => 'button'}
+            %span.icon-bar
+            %span.icon-bar
+        %div.collapse.navbar-collapse#myNavbar
+            %ul.nav.navbar-nav.navbar-right
+                %li
+                    - if logged_in?
+                        = link_to 'Logout', logout_path
+                        = link_to 'Profile', user_path(current_user)
+                        = link_to @temp, new_rizq_path
+                    - else
+                        = link_to 'Login', login_path
+                        
+%div.jumbotron.text-center
+    // %h1 RIZQ
+    %div.container-fluid.bg-grey
+        %img.img-rounded.logo{:alt => 'RizqLogo', :height => "300px", :src => "http://i1118.photobucket.com/albums/k606/apocalypse8/rizq%20logo_zpspsfuuoad.png", :width => "300px"}
 
-// = link_to 'New Rizq', new_rizq_path
-// = link_to 'Login', login_path
-- if logged_in?
-    = link_to 'Logout', logout_path
-    = link_to 'Profile', user_path(current_user)
-    = link_to @temp, new_rizq_path
-- else
-    = link_to 'Login', login_path
-
-= link_to 'About', about_path
-= link_to 'Our Team', ourteam_path
-= link_to 'FAQs', faqs_path
-= link_to 'Contact us', contactus_path
-- 5.times do
-    %br
-- @managerposts.zip(@names).each do |status, uname|
-    %br
-    = uname[0] + ': '
-    = status.status
+    - 5.times do
+        %br
+    - @managerposts.zip(@names).each do |status, uname|
+        %br
+        = uname[0] + ': '
+        = status.status

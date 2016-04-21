@@ -1,0 +1,36 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.jumbotron {
+    background-color: #1b8e1b;
+    height: 100%;
+    color: #d28d02;
+    padding: 25px 25px;
+    overflow: hidden;
+}
+
+.container-fluid.bg-grey {
+    padding: 100px 50px;
+}
+
+.navbar {
+    background-color: #f7fbdb;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 14px;
+    letter-spacing: 5px;
+}
+
+.navbar-nav li a:hover {
+    color: #0a6308 !important;
+    // color: #1abc9c !important;
+}
+
+.bg-1 { 
+    // background-color: #1b8e1b;
+    font-color: white;
+    color: #ffffff;
+}
