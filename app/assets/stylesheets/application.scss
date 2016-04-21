@@ -48,9 +48,18 @@
     z-index: 999;
     color: #fff !important;
 }
-
 // @media (max-width: 600px) {
 //     .carousel-caption {
 //         display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
 //     }
 // }
+
+#hello {
+    font-size: 400;
+    margin: 30px 0 15px;
+}
+
+.form-control:focus {
+  border-color: #EDBE00;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(237, 190, 0, 0.6);
+}

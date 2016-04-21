@@ -1,6 +1,31 @@
 <% provide(:title, 'Sign up') %>
 <h1>Sign up</h1>
 
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header"></div>
+    <button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type="button">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-left">
+        <li>
+          <img alt="RizqLogo" class="img-rounded logo" height="50px" src="http://i1118.photobucket.com/albums/k606/apocalypse8/rizq%20logo_zpspsfuuoad.png" width="50px"/>
+        </li>
+        <li>
+          <%= link_to 'Sign Up', "#" %>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<br><br>
+
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@user) do |f| %>
@@ -38,12 +63,12 @@
       <%= f.text_field :organization, class: 'form-control' %>
       <br>
       <%= f.label :designation %>
-      <%= f.select(:designation, options_for_select([["volunteer", "volunteer"], ["donor", "donor"], ["user", "user"]])) %>
+      <%= f.select(:designation, options_for_select([["manager", "manager"], ["volunteer", "volunteer"], ["donor", "donor"], ["user", "user"]]), {}, { :class => 'form-control' }) %>
       <br>
       <%= f.label :phone %>
       <%= f.text_field :phone, class: 'form-control' %>
       <br>
-      <%= f.submit "Create my account", class: "btn btn-primary" %>
+      <%= f.submit "Create my account", class: "btn btn-warning" %>
     <% end %>
   </div>
 </div>

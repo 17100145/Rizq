@@ -1,9 +1,30 @@
+%nav.navbar.navbar-default.navbar-fixed-top
+    %div.container
+        %div.navbar-header
+        %button.navbar-toggle{'data-target' => '#myNavbar', 'data-toggle' => 'collapse', :type => 'button'}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+        %div.collapse.navbar-collapse#myNavbar
+            %ul.nav.navbar-nav.navbar-left
+                %li
+                    %img.img-rounded.logo{:alt => 'RizqLogo', :height => "50px", :src => "http://i1118.photobucket.com/albums/k606/apocalypse8/rizq%20logo_zpspsfuuoad.png", :width => "50px"}
+                %li
+                    = link_to @user.username, "#"
+            %ul.nav.navbar-nav.navbar-right
+                %li
+                    = link_to 'Logout', logout_path
+                %li
+                    = link_to 'Home Page', root_url
+                %li 
+                    = link_to "Settings", edit_user_path(@user)
+
+
 %h1= @user.username
 = @lol
 %br
-= link_to 'Logout', logout_path
-= link_to 'Home Page', root_url
-= link_to "Settings", edit_user_path(@user)
+
+// = link_to "Settings", edit_user_path(@user)
 - if @user.designation == "manager"
     = form_tag user_path(@user), :method => :get do
         = label :manager, :post, 'Message'
