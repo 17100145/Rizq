@@ -10,7 +10,8 @@
 }
 
 .container-fluid.bg-grey {
-    padding: 100px 50px;
+    background-color: #1b8e1b;
+    padding: 100px 300px;
 }
 
 .navbar {
@@ -34,3 +35,22 @@
     font-color: white;
     color: #ffffff;
 }
+
+.carousel-inner img {
+    z-index: -999;
+    -webkit-filter: grayscale(90%);
+    filter: grayscale(90%); /* make all photos black and white */ 
+    width: 100%; /* Set width to 100% */
+    margin: auto;
+}
+
+.carousel-caption h3 {
+    z-index: 999;
+    color: #fff !important;
+}
+
+// @media (max-width: 600px) {
+//     .carousel-caption {
+//         display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+//     }
+// }

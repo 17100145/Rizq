@@ -56,6 +56,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carousel (1.1.2)
+      jquery-rails
+      rails
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.1)
@@ -299,6 +302,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.2.0)
   byebug
   capybara
+  carousel (~> 1.1, >= 1.1.2)
   coffee-rails (~> 4.1.0)
   cucumber-rails
   database_cleaner

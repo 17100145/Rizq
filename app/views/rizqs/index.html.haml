@@ -25,6 +25,9 @@
             %span.icon-bar
             %span.icon-bar
         %div.collapse.navbar-collapse#myNavbar
+            %ul.nav.navbar-nav.navbar-left
+                %li
+                    %img.img-rounded.logo{:alt => 'RizqLogo', :height => "50px", :src => "http://i1118.photobucket.com/albums/k606/apocalypse8/rizq%20logo_zpspsfuuoad.png", :width => "50px"}
             %ul.nav.navbar-nav.navbar-right
                 %li 
                     - if logged_in?
@@ -42,14 +45,41 @@
                     - else
                         = link_to 'Login', login_path
                         
-%div.jumbotron.text-center
-    // %h1 RIZQ
-    %div.container-fluid.bg-grey
-        %img.img-rounded.logo{:alt => 'RizqLogo', :height => "300px", :src => "http://i1118.photobucket.com/albums/k606/apocalypse8/rizq%20logo_zpspsfuuoad.png", :width => "300px"}
 
-    - 5.times do
-        %br
-    - @managerposts.zip(@names).each do |status, uname|
-        %br
-        = uname[0] + ': '
-        = status.status
+// %div.container-fluid.bg-grey.text-center
+//     %img.img-rounded.logo{:alt => 'RizqLogo', :height => "300px", :src => "http://i1118.photobucket.com/albums/k606/apocalypse8/rizq%20logo_zpspsfuuoad.png", :width => "300px", :align => "middle"}
+
+- 5.times do
+    %br
+- @managerposts.zip(@names).each do |status, uname|
+    %br
+    = uname[0] + ': '
+    = status.status
+        
+#myCarousel.carousel.slide{"data-ride" => "carousel"}
+    %ol.carousel-indicators
+        %li.active{"data-slide-to" => "0", "data-target" => "#myCarousel"}
+        %li{"data-slide-to" => "1", "data-target" => "#myCarousel"}
+        %li{"data-slide-to" => "2", "data-target" => "#myCarousel"}
+    .carousel-inner{:role => "listbox"}
+        .item.active
+            %img.img-rounded.logo{:alt => 'RizqLogo', :height => "300px", :src => "http://i1118.photobucket.com/albums/k606/apocalypse8/allpagebg_zpsjjcremcy.png", :width => "300px", :align => "middle"}
+            .carousel-caption
+                %h3 New York
+                %p The atmosphere in New York is lorem ipsum.
+        .item
+            %img.img-rounded.logo{:alt => 'RizqLogo', :height => "300px", :src => "http://i1118.photobucket.com/albums/k606/apocalypse8/allpagebg_zpsjjcremcy.png", :width => "300px", :align => "middle"}
+            .carousel-caption
+                %h3 Chicago
+                %p Thank you, Chicago - A night we won't forget.
+        .item
+            %img.img-rounded.logo{:alt => 'RizqLogo', :height => "300px", :src => "http://i1118.photobucket.com/albums/k606/apocalypse8/allpagebg_zpsjjcremcy.png", :width => "300px", :align => "middle"}
+            .carousel-caption
+                %h3 LA
+                %p Even though the traffic was a mess, we had the best time.
+    %a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel", :role => "button"}
+        %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
+        %span.sr-only Previous
+    %a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel", :role => "button"}
+        %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
+        %span.sr-only Next
