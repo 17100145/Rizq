@@ -2,11 +2,13 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+ruby '2.3.0'
 gem 'rails', '4.2.5'
 gem 'unicorn'
 gem 'thin'
 gem 'pg'
 gem 'rspec'
+gem 'simplecov'
 
 group :test, :development do
   gem 'sqlite3'
