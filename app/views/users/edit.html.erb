@@ -1,5 +1,5 @@
-<% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
+<% provide(:title, 'Edit User') %>
+<h1>Update your Profile</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -12,10 +12,7 @@
       <br>
       <%= f.label :lastname %>
       <%= f.text_field :lastname, class: 'form-control' %>
-      <br>
-      <%= f.label :username %>
-      <%= f.text_field :username, class: 'form-control' %>
-      <br>
+      
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
       <br>
@@ -37,13 +34,10 @@
       <%= f.label :organization %>
       <%= f.text_field :organization, class: 'form-control' %>
       <br>
-      <%= f.label :designation %>
-      <%= f.select(:designation, options_for_select([["volunteer", "volunteer"], ["donor", "donor"], ["user", "user"]])) %>
-      <br>
       <%= f.label :phone %>
       <%= f.text_field :phone, class: 'form-control' %>
       <br>
-      <%= f.submit "Create my account", class: "btn btn-primary" %>
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

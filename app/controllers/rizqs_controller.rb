@@ -12,6 +12,11 @@ class RizqsController < ApplicationController
     @managerposts.each do |poe|
       # @statuses.push(poe)
       @names.push(User.where(:id=>poe.user_id).pluck(:username))
+      @usid = session[:user_id]
+    @temp = "Donate Food"
+    if User.where(:id=>@usid).pluck(:designation)[0] == "user"
+      @temp = "Request Food"
+    end
     end
     # @statuses = @statuses.zip(@names)
     # if logged_in?
@@ -35,6 +40,12 @@ class RizqsController < ApplicationController
   # GET /rizqs/new
   def new
     @rizq = Rizq.new
+    @usid = session[:user_id]
+    @add = User.where(:id=>@usid).pluck(:address)[0]
+    @temp1 = "Donate"
+    if User.where(:id=>@usid).pluck(:designation)[0] == "user"
+      @temp1 = "Request"
+    end
   end
 
   # GET /rizqs/1/edit
@@ -44,6 +55,7 @@ class RizqsController < ApplicationController
   # POST /rizqs
   # POST /rizqs.json
   def create
+    if (session[:user_id] != nil)
     @rizq = Rizq.new(rizq_params)
 
     respond_to do |format|
@@ -53,6 +65,11 @@ class RizqsController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @rizq.errors, status: :unprocessable_entity }
+      end
+    end
+    else
+      respond_to do |format|
+      format.html { redirect_to root_url, notice: 'Please log in.'}
       end
     end
   end
@@ -89,6 +106,6 @@ class RizqsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rizq_params
-      params.require(:rizq).permit(:action, :food, :quantity, :address, :area, :date, :time, :perishable)
+      params.require(:rizq).permit(:user_id, :action, :food, :quantity, :address, :area, :date, :time, :perishable)
     end
 end

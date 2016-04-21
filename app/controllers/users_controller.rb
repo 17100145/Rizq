@@ -17,10 +17,71 @@ class UsersController < ApplicationController
           @lol = "Empty Status"
         end
       end
+      if params[:usern]!= nil
+        @riz = Rizq.find(params[:rizq_id])
+        @nam = User.find(params[:usern][:useri])
+        @nam = @nam[:username]
+        @riz.volunteer = @nam
+        @riz.save
+      end
+      if params[:delete]!= nil
+        @riz = Rizq.destroy(params[:rizq_id])
+      end
+    end
+    if params[:complete]!= nil
+      @riz = Rizq.find(params[:rizq_id])
+      @riz.completed = true
+      @riz.save
     end
     
     @all_statuses = Post.where(:user_id=>@user.id)
     @all_pending_volunteers = User.where(:designation=>'volunteer', :approval=>false)
+    
+    @don_rizqs = Rizq.where(:action=>'Donate')
+    @don_names = Array.new
+    @don_rizqs.each do |ri|
+      @don_names.push(User.where(:id=>ri.user_id).pluck(:username))
+    end
+    
+    @req_rizqs = Rizq.where(:action=>'Request', :completed=>true)
+    @req_names = Array.new
+    @req_rizqs.each do |ri|
+      @req_names.push(User.where(:id=>ri.user_id).pluck(:username))
+    end
+    
+    @ass_req_rizqs = Rizq.where(:action=>'Request', :completed=> false, :volunteer=>nil)
+    @ass_req_names = Array.new
+    @ass_req_rizqs.each do |ri|
+      @ass_req_names.push(User.where(:id=>ri.user_id).pluck(:username))
+    end
+    
+    @in_req_rizqs = Rizq.where(:action=>'Request', :completed=>false).where.not(:volunteer=>nil)
+    @in_req_names = Array.new
+    @in_req_rizqs.each do |ri|
+      @in_req_names.push(User.where(:id=>ri.user_id).pluck(:username))
+    end
+    
+    @voli = User.where(:designation=>'volunteer', :approval=>true)
+    @voli = @voli.pluck(:username,:id)
+    
+    @myjobs = Rizq.where(:volunteer=>@user.username, :completed=>false)
+    @myjobs_names = Array.new
+    @myjobs.each do |ri|
+      @myjobs_names.push(User.where(:id=>ri.user_id).pluck(:username))
+    end
+    
+    @comp_myjobs = Rizq.where(:volunteer=>@user.username, :completed=>true)
+    @comp_myjobs_names = Array.new
+    @comp_myjobs.each do |ri|
+      @comp_myjobs_names.push(User.where(:id=>ri.user_id).pluck(:username))
+    end
+
+    @myreqs = Rizq.where(:user_id=>@user.id, :completed=>false)
+    
+    @comp_myreqs = Rizq.where(:user_id=>@user.id, :completed=>true)
+    @mydons = Rizq.where(:user_id=>@user.id)
+    
+    
     
    end
 
@@ -50,8 +111,13 @@ class UsersController < ApplicationController
     @user = User.find(session[:user_id]);
     redirect_to user_path(@user)
   end
+  
   def user_params
       params.require(:user).permit(:username, :email, :password, :password_confirmation, :cnic, :age, :address, :organization, :designation, :firstname, :lastname, :phone)
+  end
+  
+  def user_update_params
+      params.require(:user).permit(:email, :password, :password_confirmation, :cnic, :age, :address, :organization, :firstname, :lastname, :phone)
   end
     
   def logged_in_user
@@ -66,5 +132,18 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     redirect_to(root_url) unless current_user?(@user)
   end
-    
+  
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_update_params)
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
+  
 end

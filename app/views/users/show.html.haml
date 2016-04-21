@@ -3,6 +3,7 @@
 %br
 = link_to 'Logout', logout_path
 = link_to 'Home Page', root_url
+= link_to "Settings", edit_user_path(@user)
 - if @user.designation == "manager"
     = form_tag user_path(@user), :method => :get do
         = label :manager, :post, 'Message'
@@ -28,8 +29,13 @@
         %br
         = @user.username + ": "
         = status.status
-    - Rizq.all.each do |rizq|
-        = rizq.action
+    - 5.times do
+        %br
+    = 'Donations!'
+    - @don_rizqs.zip(@don_names).each do |rizq, uname|
+        %br
+        = rizq.user_id
+        = uname[0]
         = rizq.food
         = rizq.quantity
         = rizq.address
@@ -37,8 +43,135 @@
         = rizq.date
         = rizq.time
         = rizq.perishable
+    - 5.times do
+        %br
+    = 'Completed Requests!'
+    - @req_rizqs.zip(@req_names).each do |rizq, uname|
+        %br
+        = rizq.user_id
+        = uname[0]
+        = rizq.food
+        = rizq.quantity
+        = rizq.address
+        = rizq.area
+        = rizq.date
+        = rizq.time
+        = rizq.perishable
+    - 5.times do
+        %br
+    = 'Assign Volunteers!'
+    - @ass_req_rizqs.zip(@ass_req_names).each do |rizq, uname|
+        %br
+        = rizq.user_id
+        = uname[0]
+        = rizq.food
+        = rizq.quantity
+        = rizq.address
+        = rizq.area
+        = rizq.date
+        = rizq.time
+        = rizq.perishable
+        = form_tag user_path(@user), :method => :get do
+            = hidden_field_tag "rizq_id", rizq.id
+            = select(:usern,:useri, @voli)
+            = submit_tag 'assign'
+        = form_tag user_path(@user), :method => :get do
+            = hidden_field_tag "delete", "delete"
+            = hidden_field_tag "rizq_id", rizq.id
+            = submit_tag 'delete'
+    - 5.times do
+        %br
+    = 'In Progress!'
+    - @in_req_rizqs.zip(@in_req_names).each do |rizq, uname|
+        %br
+        = rizq.user_id
+        = uname[0]
+        = rizq.food
+        = rizq.quantity
+        = rizq.address
+        = rizq.area
+        = rizq.date
+        = rizq.time
+        = rizq.perishable
+        = rizq.volunteer
+        = form_tag user_path(@user), :method => :get do
+            = hidden_field_tag "rizq_id", rizq.id
+            = select(:usern,:useri, @voli)
+            = submit_tag 'change'
+        = form_tag user_path(@user), :method => :get do
+            = hidden_field_tag "delete", "delete"
+            = hidden_field_tag "rizq_id", rizq.id
+            = submit_tag 'delete'
         
 - if @user.designation == "volunteer" && @user.approval == false
     = "Aprroval Pending"
 - elsif @user.designation == "volunteer"
+    %br
     = "Assigned Jobs"
+    - @myjobs.zip(@myjobs_names).each do |rizq, uname|
+        %br
+        = uname[0]
+        = rizq.food
+        = rizq.quantity
+        = rizq.address
+        = rizq.area
+        = rizq.date
+        = rizq.time
+        = rizq.perishable
+        = form_tag user_path(@user), :method => :get do
+            = hidden_field_tag "complete", "complete"
+            = hidden_field_tag "rizq_id", rizq.id
+            = submit_tag 'complete'
+    %br
+    = "Completed Jobs"
+    - @comp_myjobs.zip(@comp_myjobs_names).each do |rizq, uname|
+        %br
+        = uname[0]
+        = rizq.food
+        = rizq.quantity
+        = rizq.address
+        = rizq.area
+        = rizq.date
+        = rizq.time
+        = rizq.perishable
+- if @user.designation == "user"
+    %br
+    = "My requests"
+    - @myreqs.each do |rizq|
+        %br
+        = rizq.food
+        = rizq.quantity
+        = rizq.address
+        = rizq.area
+        = rizq.date
+        = rizq.time
+        = rizq.perishable
+        = rizq.volunteer
+        = form_tag user_path(@user), :method => :get do
+            = hidden_field_tag "delete", "delete"
+            = hidden_field_tag "rizq_id", rizq.id
+            = submit_tag 'delete'
+    %br
+    = "Completed Requests"
+    - @comp_myreqs.each do |rizq|
+        %br
+        = rizq.food
+        = rizq.quantity
+        = rizq.address
+        = rizq.area
+        = rizq.date
+        = rizq.time
+        = rizq.perishable
+        = rizq.volunteer
+- if @user.designation == "donor"
+    %br
+    = "My Donations"
+    - @mydons.each do |rizq|
+        %br
+        = rizq.food
+        = rizq.quantity
+        = rizq.address
+        = rizq.area
+        = rizq.date
+        = rizq.time
+        = rizq.perishable
