@@ -1,12 +1,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.jumbotron {
+.jumbotron#ab {
     background-color: #1b8e1b;
-    height: 100%;
+    background-size: cover;
+    // height: 100%;
     color: #d28d02;
-    padding: 25px 25px;
-    overflow: hidden;
+    // padding: 20px 200px;
+    // overflow: hidden;
 }
 
 .container-fluid.bg-grey {
@@ -16,6 +17,7 @@
 
 .navbar {
     background-color: #f7fbdb;
+    // background-color: #000000;
     padding-top: 10px;
     padding-bottom: 10px;
     border: 0;
@@ -36,17 +38,34 @@
     color: #ffffff;
 }
 
-.carousel-inner img {
-    z-index: -999;
-    -webkit-filter: grayscale(90%);
-    filter: grayscale(90%); /* make all photos black and white */ 
+#myCarousel {
+    background-color: #0D5C0D;
+    margin-top: -40px;
+    width: 100%;
+    height: 531px !important;
+    margin-bottom: 40px;
+}
+
+#logo {
+    // -webkit-filter: grayscale(90%);
+    // filter: grayscale(90%); /* make all photos black and white */ 
+    width: auto; /* Set width to 100% */
+    max-height: 513px !important;
+    margin: auto;
+}
+
+.carousel-inner img{
+    // z-index: -999;
+    // -webkit-filter: grayscale(90%);
+    // filter: grayscale(90%); /* make all photos black and white */ 
     width: 100%; /* Set width to 100% */
+    max-height: 513px !important;
     margin: auto;
 }
 
 .carousel-caption h3 {
     z-index: 999;
-    color: #fff !important;
+    color: #ffffff !important;
 }
 // @media (max-width: 600px) {
 //     .carousel-caption {
