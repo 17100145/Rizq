@@ -33,3 +33,15 @@ end
 And (/^I should not see a "(.*?)" button$/) do |thisb|
   page.should have_no_content(thisb)
 end
+
+Then (/^I can edit my details$/) do
+  fill_in("Password", :with => "new_p123")
+  fill_in("Confirmation", :with => "new_p123")
+  fill_in("Firstname", :with => "some_unique_fname")
+  fill_in("Cnic", :with => "1234567654321")
+  click_button("Save changes")
+  @user = User.find_by firstname: "some_unique_fname"
+  if (@user.cnic != "1234567654321")
+      fail(ArgumentError.new('Assertion failed'))
+  end
+end
