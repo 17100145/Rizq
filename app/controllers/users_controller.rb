@@ -65,7 +65,7 @@ class UsersController < ApplicationController
     temp.each do |ri|
       @temp1.push(User.where(:id=>ri.user_id).pluck(:username))
     end
-    return temp1
+    return @temp1
   end
   
 
