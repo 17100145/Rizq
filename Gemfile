@@ -9,6 +9,7 @@ gem 'thin'
 gem 'pg'
 gem 'rspec'
 gem 'simplecov'
+gem 'minitest'
 
 group :test, :development do
   gem 'sqlite3'

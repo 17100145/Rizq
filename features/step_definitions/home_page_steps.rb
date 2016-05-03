@@ -9,9 +9,7 @@ When(/^I am on the homepage$/) do
 end
 
 Then(/^I should see the "(.*?)" post$/) do |status|
-  @post = Post.find_by_status(status)
-
-  page.should have_content(@post.status)
+  page.should have_content(status)
 end
 
 Given(/^there's a user named "(.*?)", who is not a manager, and he posts "(.*?)"$/) do |userin, status|
@@ -21,7 +19,9 @@ Given(/^there's a user named "(.*?)", who is not a manager, and he posts "(.*?)"
 end
 
 Then(/^I should not see the "(.*?)" post$/) do |status|
-  @post = Post.find_by_status(status)
+  page.should_not have_content(status)
+end
 
-  page.should_not have_content(@post.status)
+And (/^I enter post "(.*?)"$/) do |status|
+  fill_in "post_status", with: status
 end
