@@ -2,8 +2,8 @@ require "spec_helper"
 
 describe UsersController do
     before :each do
-    DatabaseCleaner.clean
-    @user = FactoryGirl.create(:user)
+        DatabaseCleaner.clean
+        @user = FactoryGirl.create(:user)
     end
     # context 'when #user is valid'
     #     it 'renders a single user' do
@@ -12,21 +12,29 @@ describe UsersController do
     #     end
     # end
     
+    
     describe 'GET #new' do
         it 'creates a User object' do
-            @user.should be_an_instance_of User
+            get :new
+            # @user.should be_an_instance_of User
+            # expect(response).to redirect_to new_user_path
         end
     end
     
     describe 'POST #create' do
-        # context 'creates a user' do
-        #     let(:user) { mock_model(User, params) }
-        #     it 'lets the user log in' do
-    	   #     User.should_receive(:user).with(@params).and_return(@user)
-    	   #     expect(flash[:success]).to match(/^Welcome!/)
-    	   #     expect(response).to redirect_to @user
-    	   # end
-        # end
+        before(:each) do
+            # @user = mock(:user, :save => true)
+            # Job.stub!(:new).and_return(@user)
+        end
+        it 'creates a user when valid parameters are passed' do
+            @user_params = {"username" => "Abeera", "email" => "abeera@gmail.com", "password" => "abcd1234", "password_confirmation" => "abcd1234", "cnic" => 35202, "age" => 12, "address" => "LUMS", "organization" => "Also LUMS", "designation" => "manager", "firstname" => "Abeera", "lastname" => "Shamail", "phone" => 12345}
+            post :create, {:user => @user_params}
+            expect(flash[:success]).to match(/^Welcome!/)
+        end
+        it 'does not create a user when invalid params' do
+            @user_params =  {"username" => "Abeera", "email" => "abeera@gmail.com", "password" => "abcd12345", "password_confirmation" => "abcd1234", "cnic" => 35202, "age" => 12, "address" => "LUMS", "organization" => "Also LUMS", "designation" => "manager", "firstname" => "Abeera", "lastname" => "Shamail", "phone" => 12345}
+            post :create, {:user => @user_params}
+        end
         # context '??' do
         #     it 'lets the user log in' do
         #         post :create, user: {username: @user.username, email: 'gimmeFood@gmail.com', password: 'gimme', firstname: @user.firstname, lastname: @user.lastname}
@@ -71,10 +79,54 @@ describe UsersController do
     describe '#correct_user' do
     end
     
-    describe '#edit' do
+    describe 'GET #edit' do
+        it 'tries to edit user' do
+            # get :edit, :id => 1234
+            @user1 = User.create(username: "Abeera", email: "abeera@gmail.com", password: "some_p", password_confirmation: "some_p", cnic: 923344, age: 23, address: "addresss", organization: "org", designation: "manager", firstname: "Abeera", lastname: "Shamail", phone: 8364)
+            session[:user_id] = @user1.id
+            get :edit, :id => @user1.id
+        end
     end
-    describe '#update' do
+    
+    describe 'PUT #update' do
+        it 'updates user info' do
+            @user1 = User.create(username: "Abeera", email: "abeera@gmail.com", password: "some_p", password_confirmation: "some_p", cnic: 923344, age: 23, address: "addresss", organization: "org", designation: "manager", firstname: "Abeera", lastname: "Shamail", phone: 8364)
+            @user_update_params = {"email" => "abeera1@gmail.com", "password" => "abcd1234", "password_confirmation" => "abcd1234", "cnic" => 35202, "age" => 12, "address" => "LUMS", "organization" => "Also LUMS", "designation" => "manager", "firstname" => "Abeera", "lastname" => "Shamail", "phone" => 12345}
+            session[:user_id] = @user1.id
+            put :update, :id => @user1.id, :user => @user_update_params
+        end
     end
+    
+    describe 'GET #show' do
+        it 'shows stufff' do
+            @user1 = User.create(username: "Abeera", email: "abeera@gmail.com", password: "some_p", password_confirmation: "some_p", cnic: 923344, age: 23, address: "addresss", organization: "org", designation: "manager", firstname: "Abeera", lastname: "Shamail", phone: 8364)
+            session[:user_id] = @user1.id
+            get :show, :id => @user1.id
+        end
+        
+        it 'post stufff' do
+            @user1 = User.create(username: "Abeera", email: "abeera@gmail.com", password: "some_p", password_confirmation: "some_p", cnic: 923344, age: 23, address: "addresss", organization: "org", designation: "manager", firstname: "Abeera", lastname: "Shamail", phone: 8364)
+            session[:user_id] = @user1.id
+            get :show, :id => @user1.id, :post => {status: "bleh"}
+        end
+        
+        it 'post stufff' do
+            @user1 = User.create(username: "Abeera", email: "abeera@gmail.com", password: "some_p", password_confirmation: "some_p", cnic: 923344, age: 23, address: "addresss", organization: "org", designation: "manager", firstname: "Abeera", lastname: "Shamail", phone: 8364)
+            session[:user_id] = @user1.id
+            get :show, :id => @user1.id, :post => {status: ""}
+        end
+        
+        it 'we have a volunteer' do
+            @user1 = User.create(username: "Abeera", email: "abeera@gmail.com", password: "some_p", password_confirmation: "some_p", cnic: 923344, age: 23, address: "addresss", organization: "org", designation: "manager", firstname: "Abeera", lastname: "Shamail", phone: 8364)
+            @user2 = User.create(username: "AbeeraV", email: "abeerav@gmail.com", password: "some_pv", password_confirmation: "some_pv", cnic: 923344, age: 23, address: "addresss", organization: "org", designation: "volunteer", firstname: "Abeerav", lastname: "Shamailv", phone: 8364)
+            @rizq1 = Rizq.create(user_id: @user1.id, action: "Request", food: "Yummy", quantity: "10", address: "LUMS", area: "DHA", date: "25-Nov-2011", time: "12:50", perishable: true) 
+
+            session[:user_id] = @user1.id
+            get :show, :id => @user1.id, :usern => {useri: @user2.id}, :rizq_id => @rizq1.id
+        end
+    end
+
+    
 
 end
 # 	def do_post

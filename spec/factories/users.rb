@@ -9,7 +9,7 @@ FactoryGirl.define do
     lastname 'Khan'
     address 'DHA'
     organization 'LUMS'
-    designation 'user'
+    designation 'manager'
     phone '090078601'
     cnic '331008112345'
     
