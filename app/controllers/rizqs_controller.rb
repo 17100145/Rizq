@@ -6,7 +6,7 @@ class RizqsController < ApplicationController
   def index
     @rizqs = Rizq.all
     
-    @managerposts = Post.where(:user_id=>User.where(:designation=>"manager").uniq.pluck(:id)).order(created_at: :desc).limit(3)
+    @managerposts = Post.where(:user_id=>User.where(:designation=>"manager").uniq.pluck(:id)).order(created_at: :desc).limit(5)
     # @statuses = Array.new
     @names = Array.new
     @imgnames = Array.new

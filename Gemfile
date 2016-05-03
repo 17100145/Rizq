@@ -10,6 +10,7 @@ gem 'pg'
 gem 'rspec'
 gem 'simplecov'
 gem 'minitest'
+gem 'bootstrap-datepicker-rails'
 
 group :test, :development do
   gem 'sqlite3'

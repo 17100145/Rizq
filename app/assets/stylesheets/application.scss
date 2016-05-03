@@ -1,6 +1,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body {
+    font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+    color: #075201;
+}
+
+
 .jumbotron#ab {
     background-color: #1b8e1b;
     background-size: cover;
@@ -65,8 +71,8 @@
 
 .carousel-caption h3 {
     z-index: 999;
-    color: #E4B10D !important;
-    font-family: Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif;
+    color: #000000 !important;
+    font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
 	font-size: 32px;
 	font-style: normal;
 	font-variant: normal;
@@ -77,21 +83,14 @@
 
 .carousel-caption p {
     z-index: 999;
-    color: #ECD61B !important;
+    color: #000000 !important;
     padding-bottom: 150px;
     font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
 	font-size: 28px;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 200;
-// 	line-height: 26.4px;
 }
-
-// @media (max-width: 600px) {
-//     .carousel-caption {
-//         display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
-//     }
-// }
 
 #hello {
     font-size: 400;
@@ -175,7 +174,7 @@
 
 #twoCU.col-sm-6 {
     padding-top: 150px;
-    padding-bottom: 155px;
+    padding-bottom: 163px;
     padding-left: 120px;
     // text-align: justify;
     // text-justify: inter-word;
@@ -201,6 +200,83 @@
     padding-left: 0px;
 }
 
-// .container#contOT {
-//     margin-top: 250px;
-// }
+#mess {
+    padding-left: 350px;
+}
+
+#man.jumbotron { 
+    background-color: #1b8e1b;
+    color: #ffffff;
+    padding: 100px 25px;
+}
+
+#volunteer.container-fluid {
+    background-color: #FEEFB1;
+    padding: 60px 50px;
+    overflow: scroll;
+}
+
+#messages.container-fluid {
+    background-color: #FEEFB1;
+    padding: 10px 50px;
+    height: 230px !important;
+    overflow: scroll;
+}
+
+#donations.container-fluid {
+    background-color: #FEEFB1;
+    padding: 60px 50px;
+    overflow: scroll;
+}
+
+#completed.container-fluid {
+    background-color: #FEEFB1;
+    padding: 60px 50px;
+    overflow: scroll;
+}
+
+#assign.container-fluid {
+    background-color: #FEEFB1;
+    padding: 60px 50px;
+    overflow: scroll;
+}
+
+#progress.container-fluid {
+    background-color: #FEEFB1;
+    padding: 60px 50px;
+    overflow: scroll;
+}
+
+#ajobs.container-fluid {
+    background-color: #FEEFB1;
+    padding: 60px 50px;
+    overflow: scroll;
+}
+
+#cjobs.container-fluid {
+    background-color: #FEEFB1;
+    padding: 60px 50px;
+    overflow: scroll;
+}
+
+#mreq.container-fluid {
+    background-color: #FEEFB1;
+    padding: 60px 50px;
+    overflow: scroll;
+}
+
+#creq.container-fluid {
+    background-color: #FEEFB1;
+    padding: 60px 50px;
+    overflow: scroll;
+}
+
+#donor.container-fluid {
+    background-color: #FEEFB1;
+    padding: 60px 50px;
+    overflow: scroll;
+}
+
+h3 {
+    color: #075201;
+}

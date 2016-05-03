@@ -22,125 +22,127 @@
 
 %h1= @user.username
 = @lol
-%br
 
 // = link_to "Settings", edit_user_path(@user)
 - if @user.designation == "manager"
-    .jumbotron.text-center
-        %h3 
-            = label :manager, :post, 'Message'
-        // %p We specialize in blablabla
-        %form.form-inline
-            // = form_tag user_path(@user), :method => :get do
-            //     = label :manager, :post, 'Message'
-            //     = text_field :post, "status"
-            //     = submit_tag 'post'
-            %input.form-control{:placeholder => "Message", :required => "", :size => "50", :type => "status"}
-                %button.btn.btn-warning{:type => "button"} Post
-- if @user.designation == "manager"
-    = form_tag user_path(@user), :method => :get do
-        = label :manager, :post, 'Message'
-        = text_field :post, "status"
-        = submit_tag 'post'
-    = "Approve Volunteers"
-    - @all_pending_volunteers.each do |vol|
-        %br
-        = vol.username
-        = vol.email
-        = vol.cnic
-        = vol.age
-        = vol.address
-        = vol.organization
-        = vol.firstname
-        = vol.lastname
-        = vol.phone
-        = link_to 'approve', active_user_path(:volid=>vol.id)
-        = link_to 'reject', reject_user_path(:volid=>vol.id)
-    - 5.times do
-        %br
-    - @all_statuses.each do |status|
-        %br
-        = @user.username + ": "
-        = status.status
-    - 5.times do
-        %br
-    = 'Donations!'
-    - @don_rizqs.zip(@don_names).each do |rizq, uname|
-        %br
-        = rizq.user_id
-        = uname[0]
-        = rizq.food
-        = rizq.quantity
-        = rizq.address
-        = rizq.area
-        = rizq.date
-        = rizq.time
-        = rizq.perishable
-    - 5.times do
-        %br
-    = 'Completed Requests!'
-    - @req_rizqs.zip(@req_names).each do |rizq, uname|
-        %br
-        = rizq.user_id
-        = uname[0]
-        = rizq.food
-        = rizq.quantity
-        = rizq.address
-        = rizq.area
-        = rizq.date
-        = rizq.time
-        = rizq.perishable
-    - 5.times do
-        %br
-    = 'Assign Volunteers!'
-    - @ass_req_rizqs.zip(@ass_req_names).each do |rizq, uname|
-        %br
-        = rizq.user_id
-        = uname[0]
-        = rizq.food
-        = rizq.quantity
-        = rizq.address
-        = rizq.area
-        = rizq.date
-        = rizq.time
-        = rizq.perishable
+    #man.jumbotron.text-center
         = form_tag user_path(@user), :method => :get do
-            = hidden_field_tag "rizq_id", rizq.id
-            = select(:usern,:useri, @voli)
-            = submit_tag 'assign'
-        = form_tag user_path(@user), :method => :get do
-            = hidden_field_tag "delete", "delete"
-            = hidden_field_tag "rizq_id", rizq.id
-            = submit_tag 'delete'
-    - 5.times do
-        %br
-    = 'In Progress!'
-    - @in_req_rizqs.zip(@in_req_names).each do |rizq, uname|
-        %br
-        = rizq.user_id
-        = uname[0]
-        = rizq.food
-        = rizq.quantity
-        = rizq.address
-        = rizq.area
-        = rizq.date
-        = rizq.time
-        = rizq.perishable
-        = rizq.volunteer
-        = form_tag user_path(@user), :method => :get do
-            = hidden_field_tag "rizq_id", rizq.id
-            = select(:usern,:useri, @voli)
-            = submit_tag 'change'
-        = form_tag user_path(@user), :method => :get do
-            = hidden_field_tag "delete", "delete"
-            = hidden_field_tag "rizq_id", rizq.id
-            = submit_tag 'delete'
+            %h3= label :manager, :post, 'Message'
+            #mess= text_field :post, "status", :class => 'form-control', :style => "width:600px"
+            %br
+            = submit_tag 'post', :class => "btn btn-warning"
+    
+    
+    #messages.container-fluid
+        %h3
+            = "Messages"
+        %ul
+        - @all_statuses.each do |status|
+            %br
+            %li 
+                = @user.username + ": "
+                = status.status            
+    %br
+    #volunteer.container-fluid
+        %h3
+            = "Approve Volunteers"
+        - @all_pending_volunteers.each do |vol|
+            %br
+            = vol.username
+            = vol.email
+            = vol.cnic
+            = vol.age
+            = vol.address
+            = vol.organization
+            = vol.firstname
+            = vol.lastname
+            = vol.phone
+            = link_to 'approve', active_user_path(:volid=>vol.id)
+            = link_to 'reject', reject_user_path(:volid=>vol.id)
+
+    %br
+    #donations.container-fluid
+        %h3= 'Donations!'
+        - @don_rizqs.zip(@don_names).each do |rizq, uname|
+            %br
+            = rizq.user_id
+            = uname[0]
+            = rizq.food
+            = rizq.quantity
+            = rizq.address
+            = rizq.area
+            = rizq.date
+            = rizq.time
+            = rizq.perishable
+    %br
+    #completed.container-fluid
+        %h3= 'Completed Requests!'
+        - @req_rizqs.zip(@req_names).each do |rizq, uname|
+            %br
+            = rizq.user_id
+            = uname[0]
+            = rizq.food
+            = rizq.quantity
+            = rizq.address
+            = rizq.area
+            = rizq.date
+            = rizq.time
+            = rizq.perishable
+    
+    %br
+    #assign.container-fluid
+        %h3= 'Assign Volunteers!'
+        - @ass_req_rizqs.zip(@ass_req_names).each do |rizq, uname|
+            %br
+            = rizq.user_id
+            = uname[0]
+            = rizq.food
+            = rizq.quantity
+            = rizq.address
+            = rizq.area
+            = rizq.date
+            = rizq.time
+            = rizq.perishable
+            = form_tag user_path(@user), :method => :get do
+                = hidden_field_tag "rizq_id", rizq.id
+                = select(:usern,:useri, @voli)
+                = submit_tag 'assign', :class => "btn btn-warning"
+            = form_tag user_path(@user), :method => :get do
+                = hidden_field_tag "delete", "delete"
+                = hidden_field_tag "rizq_id", rizq.id
+                = submit_tag 'delete', :class => "btn btn-warning"
+    %br
+    #progress.container-fluid
+        %h3= 'In Progress!'
+        - @in_req_rizqs.zip(@in_req_names).each do |rizq, uname|
+            %br
+            = rizq.user_id
+            = uname[0]
+            = rizq.food
+            = rizq.quantity
+            = rizq.address
+            = rizq.area
+            = rizq.date
+            = rizq.time
+            = rizq.perishable
+            = rizq.volunteer
+            = form_tag user_path(@user), :method => :get do
+                = hidden_field_tag "rizq_id", rizq.id
+                = select(:usern,:useri, @voli)
+                = submit_tag 'change', :class => "btn btn-warning"
+            = form_tag user_path(@user), :method => :get do
+                = hidden_field_tag "delete", "delete"
+                = hidden_field_tag "rizq_id", rizq.id
+                = submit_tag 'delete', :class => "btn btn-warning"
         
 - if @user.designation == "volunteer" && @user.approval == false
-    = "Aprroval Pending"
+    -5.times do
+        %br
+    %h2.text-center= "Approval Pending"
 - elsif @user.designation == "volunteer"
     %br
-    = "Assigned Jobs"
+    #ajobs.container-fluid
+        %h3= "Assigned Jobs"
     - @myjobs.zip(@myjobs_names).each do |rizq, uname|
         %br
         = uname[0]
@@ -154,9 +156,10 @@
         = form_tag user_path(@user), :method => :get do
             = hidden_field_tag "complete", "complete"
             = hidden_field_tag "rizq_id", rizq.id
-            = submit_tag 'complete'
+            = submit_tag 'complete', :class => "btn btn-warning"
     %br
-    = "Completed Jobs"
+    #cjobs.container-fluid
+        %h3= "Completed Jobs"
     - @comp_myjobs.zip(@comp_myjobs_names).each do |rizq, uname|
         %br
         = uname[0]
@@ -167,9 +170,11 @@
         = rizq.date
         = rizq.time
         = rizq.perishable
+        
 - if @user.designation == "user"
     %br
-    = "My requests"
+    #mreq.container-fluid
+        %h3= "My requests"
     - @myreqs.each do |rizq|
         %br
         = rizq.food
@@ -183,9 +188,10 @@
         = form_tag user_path(@user), :method => :get do
             = hidden_field_tag "delete", "delete"
             = hidden_field_tag "rizq_id", rizq.id
-            = submit_tag 'delete'
+            = submit_tag 'delete', :class => "btn btn-warning"
     %br
-    = "Completed Requests"
+    #creq.container-fluid
+        %h3= "Completed Requests"
     - @comp_myreqs.each do |rizq|
         %br
         = rizq.food
@@ -196,9 +202,11 @@
         = rizq.time
         = rizq.perishable
         = rizq.volunteer
+        
 - if @user.designation == "donor"
     %br
-    = "My Donations"
+    #donor.container-fluid
+        %h3= "My Donations"
     - @mydons.each do |rizq|
         %br
         = rizq.food
