@@ -36,23 +36,21 @@ class UsersController < ApplicationController
     
     @all_statuses = Post.where(:user_id=>@user.id)
     @all_pending_volunteers = User.where(:designation=>'volunteer', :approval=>false)
-    
-    don
-    req
-    ass
-    in_req
-    
-    
-
-    
-
+    @don_rizqs = Rizq.where(:action=>'Donate')
+    @don_names = getArr(@don_rizqs)
+    @req_rizqs = Rizq.where(:action=>'Request', :completed=>true)
+    @req_names = getArr(@req_rizqs)
+    @ass_req_rizqs = Rizq.where(:action=>'Request', :completed=> false, :volunteer=>nil)
+    @ass_req_names = getArr(@ass_req_rizqs)
+    @in_req_rizqs = Rizq.where(:action=>'Request', :completed=>false).where.not(:volunteer=>nil)
+    @in_req_names = getArr(@in_req_rizqs)
     
     @voli = User.where(:designation=>'volunteer', :approval=>true)
     @voli = @voli.pluck(:username,:id)
-    
-    myjobs
-   
-    comp_myjobs
+    @myjobs = Rizq.where(:volunteer=>@user.username, :completed=>false)
+    @myjobs_names = getArr(@myjobs)
+    @comp_myjobs = Rizq.where(:volunteer=>@user.username, :completed=>true)
+    @comp_myjobs_names = getArr(@comp_myjobs)
     
 
     @myreqs = Rizq.where(:user_id=>@user.id, :completed=>false)
@@ -61,51 +59,16 @@ class UsersController < ApplicationController
     @mydons = Rizq.where(:user_id=>@user.id)
    end
   
-  def don
-    @don_rizqs = Rizq.where(:action=>'Donate')
-    @don_names = Array.new
-    @don_rizqs.each do |ri|
-      @don_names.push(User.where(:id=>ri.user_id).pluck(:username))
-    end 
+  
+  def getArr(temp)
+    @temp1 = Array.new
+    temp.each do |ri|
+      @temp1.push(User.where(:id=>ri.user_id).pluck(:username))
+    end
+    return temp1
   end
   
-  def req
-    @req_rizqs = Rizq.where(:action=>'Request', :completed=>true)
-    @req_names = Array.new
-    @req_rizqs.each do |ri|
-      @req_names.push(User.where(:id=>ri.user_id).pluck(:username))
-    end
-  end
-  
-  def ass
-    @ass_req_rizqs = Rizq.where(:action=>'Request', :completed=> false, :volunteer=>nil)
-    @ass_req_names = Array.new
-    @ass_req_rizqs.each do |ri|
-      @ass_req_names.push(User.where(:id=>ri.user_id).pluck(:username))
-    end    
-  end
-  def in_req
-    @in_req_rizqs = Rizq.where(:action=>'Request', :completed=>false).where.not(:volunteer=>nil)
-    @in_req_names = Array.new
-    @in_req_rizqs.each do |ri|
-      @in_req_names.push(User.where(:id=>ri.user_id).pluck(:username))
-    end
-  end
-  def myjobs
-    @myjobs = Rizq.where(:volunteer=>@user.username, :completed=>false)
-    @myjobs_names = Array.new
-    @myjobs.each do |ri|
-      @myjobs_names.push(User.where(:id=>ri.user_id).pluck(:username))
-    end
-  end
-  
-  def comp_myjobs
-    @comp_myjobs = Rizq.where(:volunteer=>@user.username, :completed=>true)
-    @comp_myjobs_names = Array.new
-    @comp_myjobs.each do |ri|
-      @comp_myjobs_names.push(User.where(:id=>ri.user_id).pluck(:username))
-    end
-  end
+
   def new
     @user = User.new
   end
