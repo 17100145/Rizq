@@ -26,6 +26,18 @@
 
 // = link_to "Settings", edit_user_path(@user)
 - if @user.designation == "manager"
+    .jumbotron.text-center
+        %h3 
+            = label :manager, :post, 'Message'
+        // %p We specialize in blablabla
+        %form.form-inline
+            // = form_tag user_path(@user), :method => :get do
+            //     = label :manager, :post, 'Message'
+            //     = text_field :post, "status"
+            //     = submit_tag 'post'
+            %input.form-control{:placeholder => "Message", :required => "", :size => "50", :type => "status"}
+                %button.btn.btn-warning{:type => "button"} Post
+- if @user.designation == "manager"
     = form_tag user_path(@user), :method => :get do
         = label :manager, :post, 'Message'
         = text_field :post, "status"

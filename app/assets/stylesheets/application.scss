@@ -42,7 +42,7 @@
     background-color: #0D5C0D;
     margin-top: -40px;
     width: 100%;
-    height: 531px !important;
+    height: 493px !important;
     margin-bottom: 40px;
 }
 
@@ -65,8 +65,28 @@
 
 .carousel-caption h3 {
     z-index: 999;
-    color: #ffffff !important;
+    color: #E4B10D !important;
+    font-family: Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif;
+	font-size: 32px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+// 	line-height: 26.4px;
+    // padding-bottom: 150px;
 }
+
+.carousel-caption p {
+    z-index: 999;
+    color: #ECD61B !important;
+    padding-bottom: 150px;
+    font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+	font-size: 28px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 200;
+// 	line-height: 26.4px;
+}
+
 // @media (max-width: 600px) {
 //     .carousel-caption {
 //         display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
@@ -82,3 +102,105 @@
   border-color: #EDBE00;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(237, 190, 0, 0.6);
 }
+
+// .container {
+//     margin-top: -40px;
+// }
+
+
+.col-sm-6 {
+    background-color:#F5FFD1;
+    padding-top: 30px;
+    padding-bottom: 42px;
+    padding-left: 20px;
+    padding-right: 30px;
+    margin-top: 105px;
+    margin-bottom: 80px;
+    // text-align: center;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.col-sm-12 {
+    background-color:#F5FFD1;
+    padding-top: 30px;
+    padding-bottom: 42px;
+    padding-left: 20px;
+    padding-right: 30px;
+    margin-top: 105px;
+    margin-bottom: 80px;
+    // text-align: center;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+
+#about {
+    width: 93.5%; /* Set width to 100% */
+    height: 68% !important;
+    margin: auto;
+    margin-top: 13px;
+    // margin-bottom: 80px;
+    padding-left: 10px;
+    // position: center;
+}
+
+#one.col-sm-6 {
+    padding-bottom: 48px;
+}
+
+#contactNum , #phoneTitle {
+    // text-indent: 100px;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+#num {
+    list-style-type: none;
+    text-indent: 100px;
+}
+
+#emailAdd , #emailTitle {
+    // text-indent: 100px;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+#email {
+    list-style-type: none;
+    text-indent: 107px;
+}
+
+#twoCU.col-sm-6 {
+    padding-top: 150px;
+    padding-bottom: 155px;
+    padding-left: 120px;
+    // text-align: justify;
+    // text-justify: inter-word;
+}
+
+#oneCU.col-sm-6 {
+    padding-top: 35px;
+    padding-bottom: 37px;
+    padding-left: 35px;
+    // text-align: justify;
+    // text-justify: inter-word;
+}
+
+#ourTeam {
+    padding-left: 325px;
+    // display: block;
+    // margin: 0 auto;
+}
+
+#oneOT.col-sm-12 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 0px;
+}
+
+// .container#contOT {
+//     margin-top: 250px;
+// }
