@@ -6,12 +6,17 @@ class RizqsController < ApplicationController
   def index
     @rizqs = Rizq.all
     
-    @managerposts = Post.where(:user_id=>User.where(:designation=>"manager").uniq.pluck(:id))
+    @managerposts = Post.where(:user_id=>User.where(:designation=>"manager").uniq.pluck(:id)).order(created_at: :desc).limit(3)
     # @statuses = Array.new
     @names = Array.new
+    @imgnames = Array.new
+    ii = 0
     @managerposts.each do |poe|
       # @statuses.push(poe)
       @names.push(User.where(:id=>poe.user_id).pluck(:username))
+      @imgnames.push("bg1.jpg")
+      @imgnames[-1][2] = (@imgnames[-1][2].to_i + ii).to_s
+      ii = ii + 1
       @usid = session[:user_id]
     @temp = "Donate Food"
     if User.where(:id=>@usid).pluck(:designation)[0] == "user"

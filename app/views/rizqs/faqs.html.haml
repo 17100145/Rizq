@@ -1,1 +1,31 @@
-= link_to 'Home Page', root_url
+%nav.navbar.navbar-default.navbar-fixed-top
+    %div.container
+        %div.navbar-header
+        %button.navbar-toggle{'data-target' => '#myNavbar', 'data-toggle' => 'collapse', :type => 'button'}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+        %div.collapse.navbar-collapse#myNavbar
+            %ul.nav.navbar-nav.navbar-left
+                %li
+                    %img.img-rounded.logo{:alt => 'RizqLogo', :height => "50px", :src => "http://i1118.photobucket.com/albums/k606/apocalypse8/rizq%20logo_zpspsfuuoad.png", :width => "50px"}
+                %li
+                    = link_to 'FAQs', "#"
+            %ul.nav.navbar-nav.navbar-right
+                %li
+                    = link_to 'Home Page', root_url
+                    
+%div.container-fluid
+    .row
+        #three.col-sm-12
+            // %img#faq1{:alt => "FAQs", :src => "faq1.jpg"}        #three.col-sm-6
+            %h3 Q: What is Rizq?
+            %br
+            %br
+            %br
+            %h3 Q: How did it begin?
+            %br
+            %br
+            %br
+            
+           

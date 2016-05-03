@@ -93,3 +93,5 @@ gem 'autoprefixer-rails'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
+
+gem 'carousel', '~> 1.1', '>= 1.1.2'
