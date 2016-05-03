@@ -1,53 +1,96 @@
-<%= form_for(@rizq) do |f| %>
-  <% if @rizq.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@rizq.errors.count, "error") %> prohibited this rizq from being saved:</h2>
-
-      <ul>
-      <% @rizq.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header"></div>
+      <button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type="button">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-left">
+          <li>
+            <img alt="RizqLogo" class="img-rounded logo" height="50px" src="http://i1118.photobucket.com/albums/k606/apocalypse8/rizq%20logo_zpspsfuuoad.png" width="50px"/>
+          </li>
+          <li>
+            <%= link_to 'Donate Food', "#" %>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+        </ul>
+      </div>
     </div>
-  <% end %>
+  </nav>
 
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
 
-  <div class="field">
-    <%= f.label :UserID %><br>
-    <%= f.text_area(:user_id, :value => @usid) %>
+    <%= form_for(@rizq) do |f| %>
+      <% if @rizq.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@rizq.errors.count, "error") %> prohibited this rizq from being saved:</h2>
+    
+          <ul>
+          <% @rizq.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      
+      
+  
+    <br><br>
+    
+      <div class="field">
+        <%= f.label :UserID %><br>
+        <%= f.text_field :user_id, :value => @usid , class: 'form-control' %>
+      </div>
+      <div class="field">
+        <%= f.hidden_field :action, :value => @temp1 %>
+      </div>
+      <br>
+      <div class="field">
+        <%= f.label :food %><br>
+        <%= f.text_field :food, class: 'form-control' %>
+        <!--<%= f.text_area :food %>-->
+      </div>
+      <br>
+      <div class="field">
+        <%= f.label :quantity %> (In terms of number persons that can be fed) <br>
+        <%= f.text_field :quantity, class: 'form-control' %>
+        <!--<%= f.text_field :quantity %>-->
+      </div>
+      <br>
+      <div class="field">
+        <%= f.label :address %><br>
+        <%= f.text_field :address, :value => @add , class: 'form-control' %>
+        <!--<%= f.text_area(:address, :value => @add) %>-->
+      </div>
+      <br>
+      <div class="field">
+        <%= f.label :area %><br>
+        <%= f.text_field :area, class: 'form-control' %>
+        <!--<%= f.text_field :area %>-->
+      </div>
+      <br>
+      <div class="field">
+        <%= f.label :date %><br>
+        <%= f.date_select :date, class: 'form-control' %>
+      </div>
+      <br>
+      <div class="field">
+        <%= f.label :time %> (Approximate time of pickup)  <br>
+        <%= f.time_select :time, class: 'form-control' %>
+      </div>
+      <br>
+      <div class="field">
+        <%= f.check_box :perishable, class: 'checkbox-inline' %>
+        <%= f.label :perishable %>
+      </div>
+      <br>
+      <div class="actions">
+        <%= f.submit :Submit , class: "btn btn-warning"%>
+      </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.hidden_field :action, :value => @temp1 %>
-  </div>
-  <div class="field">
-    <%= f.label :food %><br>
-    <%= f.text_area :food %>
-  </div>
-  <div class="field">
-    <%= f.label :quantity %><br>
-    <%= f.text_field :quantity %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_area(:address, :value => @add) %>
-  </div>
-  <div class="field">
-    <%= f.label :area %><br>
-    <%= f.text_field :area %>
-  </div>
-  <div class="field">
-    <%= f.label :date %><br>
-    <%= f.date_select :date %>
-  </div>
-  <div class="field">
-    <%= f.label :time %><br>
-    <%= f.time_select :time %>
-  </div>
-  <div class="field">
-    <%= f.label :perishable %><br>
-    <%= f.check_box :perishable %>
-  </div>
-  <div class="actions">
-    <%= f.submit :Submit%>
-  </div>
-<% end %>
+</div>
